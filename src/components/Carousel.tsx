@@ -68,7 +68,7 @@ const Carousel = ({
                   style={{color:'wheat', fontSize:"1.5rem"}}>{subTitle}</motion.p>
                 </div>
                 <div className={styles.imgContainer}>
-                  <Image src={img} alt="slides"  style={{width :'100%', height:'450px', objectFit:'fill', borderRadius:'2%'}} />
+                  <Image src={img} alt="slides" width={1000} height={450} style={{ objectFit:'fill', borderRadius:'2%'}} />
                 </div>
               </motion.div> 
             ))}

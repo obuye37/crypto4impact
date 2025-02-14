@@ -18,7 +18,7 @@ export default function Home() {
       style={{display:'flex', flexDirection:'column', gap:20, justifyContent:'center', alignItems:'center', padding: '4rem 10rem', height:'450px', width:'70%'}}>
         <h1 style={{fontSize:'4rem', }}> <span style={{color:'yellow', backgroundColor:'#000', padding:'.5rem', borderRadius:'25%'}}>AB</span>OUT</h1>
         <p style={{fontSize:'1.5rem', textAlign:'center'}}>
-          Crypto for Impact is a crypto charity brand dedicated to using crypto to impact humanity positively. We believe Crypto isn't just about hype or the money made. We believe Crypto is a tool to bless lives, put smiles on the faces of the needy, give hope to the hopeless. We believe Crypto is about freedom, peace, love, and kindness. <span style={{color:'green', fontWeight:'bolder'}}>CRYPTO IS HUMANITY. CRYPTO IS POSITIVITY.</span>
+          Crypto for Impact is a crypto charity brand dedicated to using crypto to impact humanity positively. We believe Crypto isn&apos;t just about hype or the money made. We believe Crypto is a tool to bless lives, put smiles on the faces of the needy, give hope to the hopeless. We believe Crypto is about freedom, peace, love, and kindness. <span style={{color:'green', fontWeight:'bolder'}}>CRYPTO IS HUMANITY. CRYPTO IS POSITIVITY.</span>
         </p>
       </div>
       <div style={{display:'flex', justifyContent:'center', alignItems:'center', width:'25%', position:'relative', padding:0}}>
