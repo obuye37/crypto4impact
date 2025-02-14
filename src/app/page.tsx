@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 import Carousel from "@/components/Carousel";
 import { Slides } from "@/data/Slides"

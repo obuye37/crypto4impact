@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 import {AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 import { CarouselProps } from "@/data/types";
 import styles from '@/app/page.module.css'
@@ -14,7 +15,7 @@ const Carousel = ({
   slides,
 }: CarouselProps) => {
   const [curr, setCurr] = useState(0);
-  const [lineWidth, setLineWidth] = useState<number>(1)
+  // const [lineWidth, setLineWidth] = useState<number>(1)
 
 
   const prev = () =>
@@ -27,7 +28,7 @@ const Carousel = ({
     if (!autoSlide) return;
     const slideInterval = setInterval(next, autoSlideInterval);
     return () => clearInterval(slideInterval);
-  }, []);
+  });
 
   const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
   const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
@@ -43,7 +44,7 @@ const Carousel = ({
             animate={{ width: screenWidth+60}}
             transition={{ duration: (autoSlideInterval/1000), ease: 'easeInOut', repeat: Infinity }}
             style={{ width:screenWidth, height:'2px', background:'green', position:'absolute', top: '.1rem', left:0}} />
-        { slides.map(({id, title, subTitle, img, uri }, idx) => 
+        { slides.map(({id, title, subTitle, img}, idx) => 
              curr === idx && (
                 <motion.div key={id}
                 initial={{ x:20, opacity: 0 }}
@@ -51,8 +52,7 @@ const Carousel = ({
                 exit={{x: -20, opacity:0}}
                 transition={{ ease: "easeInOut", duration: 0.75 }}
 
-                style={{width:screenWidth, height:screenHeight, display:'flex'}}
-                onClick={()=> {uri}}> 
+                style={{width:screenWidth, height:screenHeight, display:'flex'}}> 
                 <div className={styles.bannerCaption}>
                   <motion.h1 
                     initial={{y: 20, opacity: 0}}
@@ -68,7 +68,7 @@ const Carousel = ({
                   style={{color:'wheat', fontSize:"1.5rem"}}>{subTitle}</motion.p>
                 </div>
                 <div className={styles.imgContainer}>
-                  <img src={img} alt="slides"  style={{width :'100%', height:'450px', objectFit:'fill', borderRadius:'2%'}} />
+                  <Image src={img} alt="slides"  style={{width :'100%', height:'450px', objectFit:'fill', borderRadius:'2%'}} />
                 </div>
               </motion.div> 
             ))}
