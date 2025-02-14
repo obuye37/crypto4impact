@@ -28,7 +28,7 @@ export default function Home() {
      </section>
      <section className="donor-section">
         <div>
-          <h1 style={{color:'whitesmoke', fontSize:'4rem', textAlign: 'center', margin:'4rem 0 0 0'}}> OUR DONORS </h1>
+          <h1 style={{color:'whitesmoke', fontSize:'2rem', textAlign: 'center', margin:'4rem 0 0 0'}}> OUR DONORS </h1>
         </div>
         <div className={styles.donorsContainer}>
           {Donors.map(({name, img, uri}, idx) => 
@@ -39,12 +39,12 @@ export default function Home() {
         )}
         </div>
      </section>
-     <section>
-      <div style={{textAlign:'center', color:'whitesmoke', padding:'1.5rem', fontSize:'2rem', fontWeight:'bolder'}}>
+     <section style={{height:'500px'}}>
+      <div style={{textAlign:'center', color:'whitesmoke', padding:'1.5rem', fontSize:'1.5rem', fontWeight:'bolder'}}>
         <h1> IMPACTS MADE </h1>
       </div>
       <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-      <iframe src="https://embed.api.video/vod/vi3vSNXoDAyNqb0DEz2SSAI3" width="100%" height="500px" allowFullScreen></iframe>"
+      <iframe width="600" height="350" src="https://www.youtube.com/embed/UQmceS9GJXI?si=n8iIs22IHUzdmG8j" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
       </div>
      </section>
     </div>
