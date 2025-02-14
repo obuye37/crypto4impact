@@ -10,4 +10,6 @@ export type Slide = {
     autoSlide?: boolean;
     autoSlideInterval?: number;
     slides: Slide[];
+    carouselNavBtn:boolean;
+    carouselIdicator:boolean;
   };

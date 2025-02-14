@@ -13,6 +13,8 @@ const Carousel = ({
   autoSlide,
   autoSlideInterval = 0,
   slides,
+  carouselNavBtn,
+  carouselIdicator,
 }: CarouselProps) => {
   const [curr, setCurr] = useState(0);
   // const [lineWidth, setLineWidth] = useState<number>(1)
@@ -41,12 +43,13 @@ const Carousel = ({
         <AnimatePresence mode="wait">
         <motion.div 
             initial={{ width: screenWidth * 0.001}}
-            animate={{ width: screenWidth+60}}
-            transition={{ duration: (autoSlideInterval/1000), ease: 'easeInOut', repeat: Infinity }}
+            animate={{ width: screenWidth}}
+            transition={{ duration: ((autoSlideInterval/1000 -1)), ease: 'easeInOut', repeat: Infinity }}
             style={{ width:screenWidth, height:'2px', background:'green', position:'absolute', top: '.1rem', left:0}} />
         { slides.map(({id, title, subTitle, img}, idx) => 
              curr === idx && (
                 <motion.div key={id}
+                layout
                 initial={{ x:20, opacity: 0 }}
                 animate={{ x:0, opacity: 1 }} 
                 exit={{x: -20, opacity:0}}
@@ -74,31 +77,38 @@ const Carousel = ({
             ))}
         </AnimatePresence>
       </div>
-      <div className={styles.carouselNav}>
-        <button
-          onClick={prev}
-          className={styles.carouselBtn}
-        >
-          <ChevronLeft size={40} />
-        </button>
-        <button
-          onClick={next}
-          className={styles.carouselBtn}
-        >
-          <ChevronRight size={40} />
-        </button>
-      </div>
-
-      <div style={{display:'absolute', inset:'auto 0 4 0'}}>
-        <div style={{display:'flex', alignItems: 'center', justifyContent:'center', gap: 2}} >
-          {slides.map((_, i) => (
-            <div key={i}
-              style={curr === i ? {padding: '.5rem'} : {opacity: .5}}
-              className={styles.carouselIndicators}
-            />
-          ))}
+      {carouselNavBtn && 
+        <div className={styles.carouselNav}>
+          <button
+            onClick={prev}
+            className={styles.carouselBtn}
+          >
+            <ChevronLeft size={40} />
+          </button>
+          <button
+            onClick={next}
+            className={styles.carouselBtn}
+          >
+            <ChevronRight size={40} />
+          </button>
         </div>
-      </div>
+      }
+      
+      {
+        carouselIdicator && (
+          <div style={{display:'absolute', inset:'20px 0 4px 0'}}>
+            <div style={{display:'flex', alignItems: 'center', justifyContent:'center', gap: 2}} >
+              {slides.map((_, i) => (
+                <div key={i}
+                  style={curr === i ? {padding: '.5rem'} : {opacity: .5}}
+                  className={styles.carouselIndicators}
+                />
+              ))}
+            </div>
+          </div>
+        )
+      }
+      
     </div>
   );
 }

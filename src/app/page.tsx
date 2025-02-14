@@ -12,7 +12,7 @@ import '@/app/cssPatterns/aboutBlob.css'
 export default function Home() {
   return (
     <div>
-     <Carousel slides={Slides} autoSlide = {true}  autoSlideInterval = {5000}/>
+     <Carousel slides={Slides} autoSlide = {true}  autoSlideInterval = {5000} carouselNavBtn={false} carouselIdicator={true}/>
      <section className='greenPatternBg'>
       <div 
       style={{display:'flex', flexDirection:'column', gap:20, justifyContent:'center', alignItems:'center', padding: '4rem 10rem', height:'450px', width:'70%'}}>
