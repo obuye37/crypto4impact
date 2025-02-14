@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navigation from "@/components/Navigation";
+import Template from "./template";
+import styles from '@/app/page.module.css'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +28,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <Navigation />
+      <div className={styles.page}>
+        <Template>
+          <main className={styles.main}>
+            {children} 
+          </main>
+          <footer className={styles.footer}>
+            <div>C4I-Crypto for Humanity</div>
+            <div>&copy; c4i-2025</div>
+          </footer>
+        </Template>
+      </div>
       </body>
     </html>
   );

@@ -1,95 +1,52 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+import Carousel from "@/components/Carousel";
+import { Slides } from "@/data/Slides"
+import { Donors } from "@/data/donors";
+import '@/app/cssPatterns/greenGrid.css'
+import '@/app/cssPatterns/aboutBlob.css'
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div>
+     <Carousel slides={Slides} autoSlide = {true}  autoSlideInterval = {5000}/>
+     <section className='greenPatternBg'>
+      <div 
+      style={{display:'flex', flexDirection:'column', gap:20, justifyContent:'center', alignItems:'center', padding: '4rem 10rem', height:'450px', width:'70%'}}>
+        <h1 style={{fontSize:'4rem', }}> <span style={{color:'yellow', backgroundColor:'#000', padding:'.5rem', borderRadius:'25%'}}>AB</span>OUT</h1>
+        <p style={{fontSize:'1.5rem', textAlign:'center'}}>
+          Crypto for Impact is a crypto charity brand dedicated to using crypto to impact humanity positively. We believe Crypto isn't just about hype or the money made. We believe Crypto is a tool to bless lives, put smiles on the faces of the needy, give hope to the hopeless. We believe Crypto is about freedom, peace, love, and kindness. <span style={{color:'green', fontWeight:'bolder'}}>CRYPTO IS HUMANITY. CRYPTO IS POSITIVITY.</span>
+        </p>
+      </div>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center', width:'25%', position:'relative', padding:0}}>
+        <div className="aboutBlob"/>
+      </div>
+      
+     </section>
+     <section className="donor-section">
+        <div>
+          <h1 style={{color:'whitesmoke', fontSize:'4rem', textAlign: 'center', margin:'4rem 0 0 0'}}> OUR DONORS </h1>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className={styles.donorsContainer}>
+          {Donors.map(({name, img, uri}, idx) => 
+            <Link href={uri} key={`${name+idx}`} className={styles.donors}>
+              <Image src={img} alt={`${name}-logo`} width={100} height={100} style={{borderRadius: '50%'}}/>
+              <p>{name}</p>
+            </Link>
+        )}
+        </div>
+     </section>
+     <section>
+      <div style={{textAlign:'center', color:'whitesmoke', padding:'1.5rem', fontSize:'2rem', fontWeight:'bolder'}}>
+        <h1> IMPACTS MADE </h1>
+      </div>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+      <iframe src="https://embed.api.video/vod/vi3vSNXoDAyNqb0DEz2SSAI3" width="100%" height="500px" allowFullScreen></iframe>"
+      </div>
+     </section>
     </div>
   );
 }
