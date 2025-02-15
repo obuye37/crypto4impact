@@ -40,7 +40,7 @@ const Navigation = ():React.JSX.Element => {
             DONATE
         </Link>
         {!closeBtn && 
-            <div className={styles.mobileMenu}>
+            <div className={`${styles.mobileMenu} ${closeBtn && styles.open}`}>
                 <XCircle size={20} style={{position:'absolute', inset:'15px 25px auto auto', color:'wheat', cursor:'pointer'}}
                     onClick={handleCloseBtn}
                 />
