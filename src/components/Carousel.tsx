@@ -23,8 +23,11 @@ const Carousel = ({
 
   useEffect(() => {
     const handleResize = () => {
-      setScreenHeight(window.innerHeight);
-      setScreenWidth(window.innerWidth)
+      if (typeof window !== "undefined"){
+        setScreenHeight(window.innerHeight);
+        setScreenWidth(window.innerWidth)
+      }
+      
     };
     window.addEventListener('resize', handleResize);
     return () => {
