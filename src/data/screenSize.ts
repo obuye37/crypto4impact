@@ -17,9 +17,9 @@ const ScreenSize = () => {
           window.removeEventListener('resize', handleResize);
         };
       }, []);
-      const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
-    const [screenHeight, setScreenHeight] = useState<number>(window.innerHeight)
-    
+      const [screenWidth, setScreenWidth] = useState<number>(0)
+    const [screenHeight, setScreenHeight] = useState<number>(0)
+
   return  {screenHeight, screenWidth}
 }
 
