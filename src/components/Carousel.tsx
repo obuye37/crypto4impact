@@ -17,8 +17,25 @@ const Carousel = ({
   carouselIdicator,
 }: CarouselProps) => {
   const [curr, setCurr] = useState(0);
+  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
+  const [screenHeight, setScreenHeight] = useState<number>(window.innerHeight)
   // const [lineWidth, setLineWidth] = useState<number>(1)
 
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenHeight(window.innerHeight);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+ useEffect(() => {
+    if (!autoSlide) return;
+    const slideInterval = setInterval(next, autoSlideInterval);
+    return () => clearInterval(slideInterval);
+  });
 
   const prev = () =>
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
@@ -26,34 +43,25 @@ const Carousel = ({
   const next = () =>
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
-  useEffect(() => {
-    if (!autoSlide) return;
-    const slideInterval = setInterval(next, autoSlideInterval);
-    return () => clearInterval(slideInterval);
-  });
-
-  const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
-  const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
-
   return (
     <div className={styles.carouselWrapper}>
       <div className={styles.carouselContainer}
         // style={{ transform: `translateX(-${curr * 100}%)` }}
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
         <motion.div 
-            initial={{ width: screenWidth * 0.001}}
+            initial={{ width: 1}}
             animate={{ width: screenWidth}}
-            transition={{ duration: ((autoSlideInterval/1000 -1)), ease: 'easeInOut', repeat: Infinity }}
+            transition={{ duration: ((autoSlideInterval/1000)), ease: 'easeInOut' }}
             style={{ width:screenWidth, height:'2px', background:'green', position:'absolute', top: '.1rem', left:0}} />
         { slides.map(({id, title, subTitle, img}, idx) => 
              curr === idx && (
                 <motion.div key={id}
                 layout
-                initial={{ x:20, opacity: 0 }}
+                initial={{ x:'100%', opacity: 0 }}
                 animate={{ x:0, opacity: 1 }} 
-                exit={{x: -20, opacity:0}}
-                transition={{ ease: "easeInOut", duration: 0.75 }}
+                exit={{opacity:0}}
+                transition={{ ease: "easeInOut", duration: 1 }}
 
                 style={{width:screenWidth, height:screenHeight, display:'flex'}}> 
                 <div className={styles.bannerCaption}>
