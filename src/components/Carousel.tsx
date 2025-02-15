@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "react-feather";
 import {AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
+import ScreenSize from '@/data/screenSize'
 import { CarouselProps } from "@/data/types";
 import styles from '@/app/page.module.css'
 
@@ -17,23 +18,7 @@ const Carousel = ({
   carouselIdicator,
 }: CarouselProps) => {
   const [curr, setCurr] = useState(0);
-  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
-  const [screenHeight, setScreenHeight] = useState<number>(window.innerHeight)
   // const [lineWidth, setLineWidth] = useState<number>(1)
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== "undefined"){
-        setScreenHeight(window.innerHeight);
-        setScreenWidth(window.innerWidth)
-      }
-      
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
  useEffect(() => {
     if (!autoSlide) return;
@@ -46,6 +31,8 @@ const Carousel = ({
 
   const next = () =>
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
+
+  const { screenWidth, screenHeight } = ScreenSize()
 
   return (
     <div className={styles.carouselWrapper}>
