@@ -13,33 +13,26 @@ export default function Home() {
   return (
     <div>
      <Carousel slides={Slides} autoSlide = {true}  autoSlideInterval = {5000} carouselNavBtn={false} carouselIdicator={true}/>
+     <section className={styles.parallaxBg} />
      <section className='greenPatternBg'>
-      <div 
-      style={{display:'flex', flexDirection:'column', gap:20, justifyContent:'center', alignItems:'center', padding: '4rem 10rem', height:'450px', width:'70%'}}>
+      <div className={styles.aboutWrapper}>
         <h1 style={{fontSize:'4rem', }}> <span style={{color:'yellow', backgroundColor:'#000', padding:'.5rem', borderRadius:'25%'}}>AB</span>OUT</h1>
-        <p style={{fontSize:'1.5rem', textAlign:'center'}}>
-          Crypto for Impact is a crypto charity brand dedicated to using crypto to impact humanity positively. We believe Crypto isn&apos;t just about hype or the money made. We believe Crypto is a tool to bless lives, put smiles on the faces of the needy, give hope to the hopeless. We believe Crypto is about freedom, peace, love, and kindness. <span style={{color:'green', fontWeight:'bolder'}}>CRYPTO IS HUMANITY. CRYPTO IS POSITIVITY.</span>
-        </p>
+        <p style={{fontSize:'2.5rem', textAlign:'center'}}>
+          Crypto for Impact is a crypto charity brand dedicated to using crypto to impact humanity positively. We believe Crypto isn&apos;t just about hype or the money made. We believe Crypto is a tool to bless lives, put smiles on the faces of the needy, give hope to the hopeless. We believe Crypto is about freedom, peace, love, and kindness.</p><br /><span style={{color:'green', textAlign:'center', fontWeight:'bolder', fontSize:'2rem'}}>CRYPTO IS HUMANITY. CRYPTO IS POSITIVITY.</span>
       </div>
-      <div style={{display:'flex', justifyContent:'center', alignItems:'center', width:'25%', position:'relative', padding:0}}>
-        <div className="aboutBlob"/>
-      </div>
-      
      </section>
-     <section className="donor-section">
-        <div>
-          <h1 style={{color:'whitesmoke', fontSize:'2rem', textAlign: 'center', margin:'4rem 0 0 0'}}> OUR DONORS </h1>
-        </div>
+     <section style={{backgroundColor:'var(--background)', height:'100vh', display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+        <h1 style={{color:'whitesmoke', fontSize:'2rem', textAlign: 'center', padding:'5rem 0 0 0'}}> OUR DONORS </h1>
         <div className={styles.donorsContainer}>
           {Donors.map(({name, img, uri}, idx) => 
             <Link href={uri} key={`${name+idx}`} className={styles.donors}>
-              <Image src={img} alt={`${name}-logo`} width={100} height={100} style={{borderRadius: '50%'}}/>
+              <Image src={img} alt={`${name}-logo`} width={150} height={150} style={{borderRadius: '50%'}}/>
               <p>{name}</p>
             </Link>
         )}
         </div>
      </section>
-     <section style={{height:'500px'}}>
+     <section style={{height:'100vh', backgroundColor:'#191919'}}>
       <div style={{textAlign:'center', color:'whitesmoke', padding:'1.5rem', fontSize:'1.5rem', fontWeight:'bolder'}}>
         <h1> IMPACTS MADE </h1>
       </div>

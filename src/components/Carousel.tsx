@@ -5,7 +5,6 @@ import { ChevronLeft, ChevronRight } from "react-feather";
 import {AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
-import ScreenSize from '@/data/screenSize'
 import { CarouselProps } from "@/data/types";
 import styles from '@/app/page.module.css'
 
@@ -32,8 +31,6 @@ const Carousel = ({
   const next = () =>
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
-  const { screenWidth, screenHeight } = ScreenSize()
-
   return (
     <div className={styles.carouselWrapper}>
       <div className={styles.carouselContainer}
@@ -49,14 +46,14 @@ const Carousel = ({
                 exit={{opacity:0}}
                 transition={{ ease: "easeInOut", duration: 1 }}
 
-                style={{width:screenWidth, height:screenHeight, display:'flex'}}> 
+                style={{width:'100vw', height:'100vh', display:'flex'}}> 
                 <div className={styles.bannerCaption}>
                   <motion.h1 
                     initial={{y: 40, opacity: 0}}
                     animate={{y: 0, opacity: 1}}
                     exit={{y: -20, opacity: 0 }}
                     transition={{ease: 'easeInOut', duration:0.5, delay: 0.5}}
-                  style={{color:'whitesmoke', fontSize:'6rem'}}>{title}</motion.h1>
+                  style={{color:'whitesmoke', fontSize:'5rem'}}>{title}</motion.h1>
                   <motion.p 
                   initial={{y: 20, opacity: 0}}
                   animate={{y: 0, opacity: 1}}
