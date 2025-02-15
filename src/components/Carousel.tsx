@@ -24,6 +24,7 @@ const Carousel = ({
   useEffect(() => {
     const handleResize = () => {
       setScreenHeight(window.innerHeight);
+      setScreenWidth(window.innerWidth)
     };
     window.addEventListener('resize', handleResize);
     return () => {
@@ -49,11 +50,6 @@ const Carousel = ({
         // style={{ transform: `translateX(-${curr * 100}%)` }}
       >
         <AnimatePresence mode="popLayout">
-        <motion.div 
-            initial={{ width: 1}}
-            animate={{ width: screenWidth}}
-            transition={{ duration: ((autoSlideInterval/1000)), ease: 'easeInOut' }}
-            style={{ width:screenWidth, height:'2px', background:'green', position:'absolute', top: '.1rem', left:0}} />
         { slides.map(({id, title, subTitle, img}, idx) => 
              curr === idx && (
                 <motion.div key={id}
@@ -66,11 +62,11 @@ const Carousel = ({
                 style={{width:screenWidth, height:screenHeight, display:'flex'}}> 
                 <div className={styles.bannerCaption}>
                   <motion.h1 
-                    initial={{y: 20, opacity: 0}}
+                    initial={{y: 40, opacity: 0}}
                     animate={{y: 0, opacity: 1}}
                     exit={{y: -20, opacity: 0 }}
                     transition={{ease: 'easeInOut', duration:0.5, delay: 0.5}}
-                  style={{color:'whitesmoke', fontSize:'3rem'}}>{title}</motion.h1>
+                  style={{color:'whitesmoke', fontSize:'6rem'}}>{title}</motion.h1>
                   <motion.p 
                   initial={{y: 20, opacity: 0}}
                   animate={{y: 0, opacity: 1}}
@@ -104,8 +100,8 @@ const Carousel = ({
       
       {
         carouselIdicator && (
-          <div style={{display:'absolute', inset:'20px 0 4px 0'}}>
-            <div style={{display:'flex', alignItems: 'center', justifyContent:'center', gap: 2}} >
+          <div className={styles.carouselIndicatorWrapper}>
+            <div style={{display:'flex', alignItems: 'center', justifyContent:'center', gap:'2px'}} >
               {slides.map((_, i) => (
                 <div key={i}
                   style={curr === i ? {padding: '.5rem'} : {opacity: .5}}
